@@ -1,0 +1,50 @@
+.SiteWrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.SiteWrapper main[role="main"] {
+	flex: 1;
+	overflow-x: hidden;
+}
+
+.ly-Full-Inner {
+	width: 100%;
+	min-height: 100vh;
+}
+
+.ly-Inner_Grid {
+	display: grid;
+	grid-template-columns: 23px minmax(0, auto) 23px;
+
+	&>*,
+	&::before,
+	&::after {
+		grid-column: 2;
+	}
+
+	&.-xl {
+		@media (--xl) {
+			grid-template-columns: minmax(23px, 1fr) minmax(auto, var(--layout-inner-xl)) minmax(23px, 1fr);
+		}
+	}
+
+	&.-lg {
+		@media (--lg) {
+			grid-template-columns: minmax(23px, 1fr) minmax(auto, var(--layout-inner-lg)) minmax(23px, 1fr);
+		}
+	}
+
+	&.-sm {
+		@media (--lg) {
+			grid-template-columns: minmax(23px, 1fr) minmax(auto, var(--layout-inner-md)) minmax(23px, 1fr);
+		}
+	}
+
+	&.-xs {
+		@media (--md) {
+			grid-template-columns: minmax(23px, 1fr) minmax(auto, var(--layout-inner-sm)) minmax(23px, 1fr);
+		}
+	}
+}

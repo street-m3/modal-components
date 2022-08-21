@@ -1,0 +1,40 @@
+/* 
+ *  @type {string} args float専用clearfix。bothなどの値を設定する。
+    .navigation {
+        @add-mixin clearfix;
+    }
+ */
+
+ @define-mixin clearfix $args {
+    &::after {
+        content: "";
+        display: block;
+        clear: $args;
+    }
+}
+
+/* { type: number } */
+/* @add-mixin fluid-clamp 100, 150; */
+/* margin-top: var(--clamp-size);  */
+@define-mixin fluid-clamp $min, $max {
+    --a: calc(100 * ($max - $min) / (var(--comp-base-upper) - var(--comp-base-lower)));
+    --b: calc($min - (var(--comp-base-lower) / 100) * var(--a));
+    --c: calc($min * 1px);
+    --d: calc(var(--a) * 1vw + var(--b) * 1px);
+    --e: calc($max * 1px);
+    --clamp-size: clamp(var(--c), var(--d), var(--e));
+    min-height: 0vw;
+}
+
+/* { type: number } */
+/* @add-mixin fluid-fontsize 40, 80; */
+@define-mixin fluid-fontsize $min, $max {
+    --f: calc(100 * ($max - $min) / (var(--comp-base-upper) - var(--comp-base-lower)));
+    --g: calc($min - (var(--comp-base-lower) / 100) * var(--f));
+    --h: calc($min * 1px);
+    --i: calc(var(--f) * 1vw + var(--g) * 1px);
+    --j: calc($max * 1px);
+    --clamp-val: clamp(var(--h), var(--i), var(--j));
+    font-size: var(--clamp-val);
+    min-height: 0vw;
+}

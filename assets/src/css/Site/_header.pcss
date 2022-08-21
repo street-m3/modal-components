@@ -1,0 +1,88 @@
+.s-Header {
+    position: relative;
+    padding: 2rem;
+    height: 100vh;
+    width: 100%;
+}
+
+.s-Header_Inner {
+    position: relative;
+}
+
+.s-Header_nav-Title {
+    font-size: 1.2rem;
+    margin: 2rem 0 1rem;
+    font-weight: bold;
+}
+
+.s-Header_nav {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+.s-Header_navList {
+    & .s-Header_navList-Item {
+        font-size: 1.2rem;
+        font-family: var(--font-serif-en);
+        font-weight: 300;
+        margin-bottom: 0.3rem;
+    }
+}
+
+.s-Header_Brand {
+    font-family: var(--font-serif-en);
+    font-weight: 300;
+    transition: all 0.8s ease 0s;
+    overflow: hidden;
+    @add-mixin fluid-fontsize 48,208;
+    white-space: normal;
+}
+
+.s-Header_Brand-Title {
+    &>* {
+        width: 100%;
+        display: block;
+        transform: translateX(-100%);
+        transition: transform 1s ease 0s;
+        line-height: 1.1;
+    }
+
+    &>*:first-child.is-show {
+        width: 100%;
+        transform: translateX(0);
+        transition: transform 1s ease 0.8s;
+    }
+
+    &>*:nth-child(2n).is-show {
+        width: 100%;
+        transform: translateX(0);
+        transition: transform 1s ease 1.2s;
+    }
+
+    &>*:nth-child(3n).is-show {
+        width: 100%;
+        transform: translateX(0);
+        transition: transform 1s ease 1.4s;
+    }
+
+    &>*:last-child.is-show {
+        position: relative;
+        padding-bottom: 0.8rem;
+    
+        &::after {
+            content: '';
+            height: 1px;
+            width: 100%;
+            background-color: var(--color-accent-gray);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+
+            @media(--sm) {
+                display: none;
+            }
+        }
+    }
+}

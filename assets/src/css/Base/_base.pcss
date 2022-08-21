@@ -1,0 +1,406 @@
+/* --------------------------------------------------------------------------
+    #Base
+-------------------------------------------------------------------------- */
+:root {
+    --color-white: #fff;
+    --color-black: #151515;
+    --color-text-primary: #2d1b0e;
+    --color-text-second: #222;
+    --color-text-third: #848484;
+    --color-accent-gray: #d3d3d3;
+    --color-bg: #fcf9e5;
+    --color-twitter: #1da1f2;
+    --color-facebook: #1877f2;
+    --color-hatena: #008fde;
+    --color-pocket: #ef3e56;
+    --color-rss: #fe7710;
+    --comp-base-lower: 414;
+    --comp-base-upper: 1366;
+    --font-serif-ja: 'Noto Serif JP', YuMincho, 'Yu Mincho', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', serif;
+    --font-serif-en: 'Spectral', serif;
+    --font-size-default: 16px;
+    --font-size-mobile: 14.4px;
+    --font-size-lower-limit: 12px;
+    --font-weight-base: 400;
+    --font-wieght-light: 300;
+    --leading-setting-body: 1.5;
+    --layout-inner-xxl: 1920px;
+    --layout-inner-xl: 1400px;
+    --layout-inner-lg: 1200px;
+    --layout-inner-md: 911px;
+    --layout-inner-sm: 768px;
+    --layout-inner-xs: 540px;
+    --zindex-Fixed-sidebar: 90;
+    --zindex-Fixed-header: 100;
+    --zindex-dropdown-nav: 110;
+    --zindex-header-brand: 120;
+    --zindex-scroll-btn: 130;
+    --zindex-drawer-overlay: 140;
+    --zindex-drawer-nav: 150;
+    --zindex-drawer-btn: 160;
+    --zindex-pointer: 10001;
+    --zindex-modal-container: 10000;
+    --zindex-animate-layer01: 12000;
+    --zindex-animate-layer02: 12001;
+    --zindex-animate-layer03: 12002;
+    --zindex-animate-layer04: 12003;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-mobile-);
+    font-family: var(--font-serif-ja);
+    line-height: var(--leading-setting-body);
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+
+    @media (--sm) {
+        font-size: var(--font-size-default);
+    }
+}
+
+/**
+ *
+ * anchor 
+ *
+ */
+
+ a {
+    background-color: transparent;
+    color: inherit;
+    text-decoration: none;
+    vertical-align: baseline;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+}
+
+a:active,
+a:hover {
+    outline-width: 0;
+}
+
+/**
+ *
+ * abbr
+ *
+ */
+
+abbr[title],
+dfn[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+/**
+ *
+ * blockquote
+ *
+ */
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+
+/**
+ *
+ * button
+ *
+ */
+
+button {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+}
+
+/**
+ *
+ * del
+ *
+ */
+
+del {
+    text-decoration: line-through;
+}
+
+/**
+ *
+ * heddings
+ *
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: inherit;
+    display: block;
+    font-size: 100%;
+    font-weight: bold;
+    font-family: inherit;
+    line-height: 1.2em;
+    margin-top: 0;
+}
+
+h1,
+.u-h1 {
+    font-size: 2.5rem;
+}
+
+h2,
+.u-h2 {
+    font-size: 2rem;
+}
+
+h3,
+.u-h3 {
+    font-size: 1.75rem;
+}
+
+h4,
+.u-h4 {
+    font-size: 1.5rem;
+}
+
+h5,
+.u-h5 {
+    font-size: 1.25rem;
+}
+
+h6,
+.u-h6 {
+    font-size: 1rem;
+}
+
+/**
+ *
+ * hr, italic, pre, code
+ *
+ */
+
+hr {
+    border-top: 1px solid #cccccc;
+    display: block;
+    height: 1px;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/**
+ * 日本語では斜体を使用しないためリセット
+ */
+i,
+cite,
+em,
+address,
+dfn {
+    font-style: normal;
+}
+
+pre {
+    width: 100%;
+    white-space: pre;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+}
+
+code {
+    position: relative;
+    display: block;
+    color: #fff;
+}
+
+/**
+ *
+ * img
+ *
+ */
+
+img {
+    border: none;
+    border-style: none;
+    height: auto;
+    max-height: 100%;
+    vertical-align: top;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+/**
+ *
+ * input
+ *
+ */
+
+input,
+select,
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 0;
+    color: inherit;
+    font: inherit;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="number"],
+input[type="submit"],
+input[type="button"] {
+    max-width: 100%;
+}
+
+input:focus,
+textarea:focus {
+    box-shadow: none;
+}
+
+input[type="radio"]:checked+label {
+    background-color: #ff0000;
+}
+
+input[type="submit"] {
+    text-decoration: none;
+}
+
+input[type="submit"],
+input[type="button"],
+label,
+select {
+    cursor: pointer;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+textarea {
+    resize: none;
+}
+
+/**
+ *
+ * ins
+ *
+ */
+
+ins {
+    background-color: #ffff99;
+    color: #000000;
+    text-decoration: none;
+}
+
+/**
+ *
+ * list
+ *
+ */
+
+li,
+ol {
+    list-style: none;
+    list-style-type: none;
+}
+
+/**
+ *
+ * legend
+ *
+ */
+
+legend {
+    color: #000000;
+}
+
+/**
+ *
+ * mark
+ *
+ */
+
+mark {
+    background-color: #ffff99;
+    color: #000000;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/**
+ *
+ * table
+ *
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/**
+ *
+ * attribute
+ *
+ */
+
+[hidden] {
+    display: none !important;
+}
+
+[disabled] {
+    cursor: not-allowed;
+}
+
+[hover] {
+    border: none;
+    outline: none;
+}
+
+[inert] {
+    cursor: default;
+    pointer-events: none;
+}
+
+[inert],
+[inert] * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
