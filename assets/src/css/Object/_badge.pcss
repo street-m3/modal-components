@@ -1,0 +1,22 @@
+.o-Github-Repository_Link {
+    --box-size: 100px;
+    clip-path: polygon(0 0, 100% 100%, 100% 0);
+    background-color: #f3f3f3;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: end;
+    align-items: flex-start;
+    width: var(--box-size);
+    height: var(--box-size);
+    overflow: hidden;
+    z-index: 5;
+    padding: calc((var(--box-size) / 2.5) / 4);
+
+    & > * {
+        width: calc(var(--box-size) / 2.5);
+        height: calc(var(--box-size) / 2.5);
+        transform: rotate(45deg);
+    }
+}

@@ -1,4 +1,4 @@
-export class TextSlideAnimation {
+export class VisuallyAnimation {
     constructor() {
         this.animationTarget = document.querySelectorAll('[data-js-title-animate]');
         this.animationContainer = document.querySelectorAll('.s-Header_Brand-Title');
@@ -39,4 +39,4 @@ export class TextSlideAnimation {
     }
 }
 
-new TextSlideAnimation();
+new VisuallyAnimation();
