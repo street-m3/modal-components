@@ -3,11 +3,31 @@ import { backfaceFixed } from './backfaceFixed';
 const FOCUSABLE = 'a[href], input:not([disabled]):not([type="hidden"]):not([aria-hidden]), select:not([disabled]):not([aria-hidden]), textarea:not([disabled]):not([aria-hidden]), button:not([disabled]):not([aria-hidden]), iframe, object, embed, [contenteditable], [tabindex]:not([tabindex^="-"])';
 
 export class Modal {
+
+    /**
+     * @constructor Modal
+     * @param {object} modal modal element className
+     * @param {object} options options object
+     * @returns 
+     */
     constructor(modal, options) {
         this.modal = modal;
 
         if (!this.modal) return;
 
+        /**
+         * * @type {string} openTrigger トグルボタンに対して付与している属性を設定
+         * * @type {string} closeTrigger モーダルを閉じるターゲットに付与している属性を設定
+         * * @type {string} openClass 開いた時に付与されるクラス名
+         * * @type {boolean} disableScroll モーダル表示中に背景スクロールを固定するかを設定
+         * * @type {boolean} disableFocus フォーカスモードの設定
+         * * @type {boolean} awaitCloseAnimation モーダルウインドウを閉じる時の待機設定
+         * * @type {boolean} awaitOpenAnimation モーダルウインドウを開く時の待機設定
+         * * @type {number} closeTime モーダルウインドウを閉じる時の待機時間
+         * * @type {number} startTime モーダルウインドウを開く時の待機時間
+         * * @type {string} contentWrapper 非活性エリアのクラス名を設定
+         * * @type {boolean} openPlayer videoタグが存在する場合、動画を自動再生するか設定
+         */
         const config = {
             openTrigger: 'data-modal-target',
             closeTrigger: 'data-modal-close',
@@ -18,7 +38,9 @@ export class Modal {
             awaitOpenAnimation: false,
             closeTime: 400,
             startTime: 400,
-            contentWrapper: '.SiteWrapper'
+            contentWrapper: '.SiteWrapper',
+            videoSelector: 'video',
+            openPlayer: false,
         };
 
         this.options = Object.assign(config, options);
@@ -27,6 +49,7 @@ export class Modal {
         this.openTrigger = document.querySelectorAll(`[${this.options.openTrigger}]`);
         this.closeTrigger = document.querySelectorAll(`[${this.options.closeTrigger}]`);
         this.contentWrapper = document.querySelector(`${this.options.contentWrapper}`);
+        this.videoSelector = document.querySelectorAll(`${this.options.videoSelector}`);
         this.focusableElements = document.querySelectorAll(FOCUSABLE);
 
         if (!this.openTrigger) {
@@ -39,6 +62,10 @@ export class Modal {
 
         if (!this.contentWrapper) {
             return console.error('[Modal: Error Message] contentWrapperは必須です。')
+        }
+
+        if (!this.videoSelector) {
+            return console.log('[Modal: Options Message] videoSelectorは現在取得できません。');
         }
 
         this.init();
@@ -99,9 +126,24 @@ export class Modal {
             targetModal.removeAttribute('style');
         }
 
+        this._videoPlayer();
+
         setTimeout(() => {
             targetModal.focus();
         }, 100);
+    }
+
+    _videoPlayer() {
+        if (this.options.openPlayer) {
+            this.videoSelector.forEach((element) => {
+                const videoSelectorParentNode = element.closest('[aria-modal="true"]');
+                if (videoSelectorParentNode.getAttribute('aria-hidden', 'false')) {
+                    element.play();
+                } else {
+                    videoSelectorParentNode.pause();
+                } 
+            });
+        }
     }
 
     _close() {
@@ -133,7 +175,7 @@ export class Modal {
     }
 
     _onKeydown(event) {
-        if (!this.options.disableScroll) return;
+        if (!this.options.disableScroll || !this.options.disableFocus) return;
 
         const firstFocusableElement = this.focusableElements[0];
         const lastFocusableElement = this.focusableElements[this.focusableElements.length - 1];
@@ -182,6 +224,21 @@ document.addEventListener('DOMContentLoaded', () => {
             disableScroll: true,
             awaitOpenAnimation: true,
             awaitCloseAnimation: true,
+            disableFocus: true,
+        });
+    });
+
+    document.querySelectorAll('.js-modal-movie').forEach((element) => {
+        new Modal(element, {
+            disableScroll: true,
+            awaitOpenAnimation: true,
+            awaitCloseAnimation: true,
+            openPlayer: false,
+            disableFocus: true,
         });
     });
 });
+
+// if (modalState) {
+
+// }
